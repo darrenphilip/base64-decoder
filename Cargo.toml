@@ -1,0 +1,8 @@
+[package]
+name = "base64-decoder"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+base64 = "0.22.1"
+clipboard = "0.5.0"
