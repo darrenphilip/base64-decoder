@@ -2,6 +2,21 @@ use std::{io};
 use std::io::Write;
 use base64::{encode, decode};
 use clipboard::{ClipboardContext, ClipboardProvider};
+use winapi::um::wincon::GetConsoleWindow;
+use winapi::um::winuser::{SetWindowPos, SWP_NOMOVE};
+use winapi::shared::windef::HWND;
+use winapi::um::winuser::{SWP_SHOWWINDOW, SW_SHOWNORMAL, ShowWindow};
+
+fn set_window_size(width: i32, height: i32) {
+    unsafe {
+        let hwnd: HWND = GetConsoleWindow();
+        if hwnd.is_null() {
+            return;
+        }
+        ShowWindow(hwnd, SW_SHOWNORMAL);
+        SetWindowPos(hwnd, 0 as HWND, 0, 0, width, height, SWP_NOMOVE | SWP_SHOWWINDOW);
+    }
+}
 
 fn title() {
     print!(
@@ -97,6 +112,7 @@ fn decoded() {
 }
 
 fn main() {
+    set_window_size(1500, 600);
 
     title();
 

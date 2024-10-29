@@ -6,3 +6,4 @@ edition = "2021"
 [dependencies]
 base64 = "0.22.1"
 clipboard = "0.5.0"
+winapi = { version = "0.3", features = ["consoleapi", "wincon", "handleapi"] }
